@@ -1,0 +1,363 @@
+/* -------------------utilities-------------------------- */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  scroll-behavior: smooth;
+}
+
+/*-------------------------- custom scroll bar       ---------------------- */
+::-webkit-scrollbar{
+  width:15px;
+}
+::-webkit-scrollbar-thumb{
+  background: linear-gradient(rgba(57, 113, 210, 0.918),rgb(246, 148, 164));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track{
+  background:rgba(225, 213, 246, 0.685);
+  border-radius: 1px 5px 5px 1px;
+  
+}
+
+/* ---------- body-------- */
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* --------------navigaton----------- */
+
+#navbar {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 1;
+  width: 100%;
+  padding: 10px;
+  background-color: #000000cb;
+  color: white;
+}
+
+#navitems {
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.iconLM {
+  padding: 5px;
+  font-size: 1.8rem;
+}
+/* #nav-ham{
+  position: absolute;
+} */
+.nav-link {
+  /* margin:10px; */
+  padding: 15px;
+  /* background-color: blue; */
+}
+.navlinks {
+  margin: 2px 8px;
+  padding: 5px;
+  /* background-color: yellow; */
+}
+.navlinks:hover {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  box-shadow: rgb(1, 255, 22) 1px 1px 5px;
+}
+
+/* ------------link  icons---------- */
+.link-icons {
+  font-size: normal;
+  margin: 0px 3px;
+}
+
+/* -------------home-section------------- */
+#Home-sec {
+  height: 100vh;
+  width: 100%;
+  /* background: linear-gradient(rgb(255, 208, 216), rgb(226, 225, 225)); */
+  background:linear-gradient(145deg,rgb(35, 35, 217),rgb(200, 25, 118));
+
+}
+
+.container {
+  flex-direction: column;
+  padding: 15px;
+  width: 100%;
+  height: 100vh;
+}
+.items {
+  flex-basis: 80%;
+  width: 100%;
+  padding: 15px;
+  margin-top: 90px;
+}
+.youthimg {
+  flex-basis: 40%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+}
+
+.youthimg::before {
+  content: "";
+  height: 15px;
+  width: 275px;
+  /* filter: blur(0px); */
+  background: linear-gradient(135deg, black, transparent);
+  border-radius: 5px;
+  position: absolute;
+  top: -4%;
+  left: 0%;
+  z-index: -1;
+  /* color: blue; */
+}
+
+.youthimg::after {
+  content: "";
+  height: 230px;
+  width: 15px;
+  border-radius: 5px;
+  filter: blur(0px);
+  position: absolute;
+  bottom: 0%;
+  right: -4%;
+  z-index: -1;
+  background: linear-gradient(transparent, black);
+}
+
+#front-image {
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.health-tips {
+  flex-basis: 60%;
+  margin: 50px 25px;
+  height: 100%;
+  width: 50%;
+  border-top: 5px solid black;
+  border-bottom: 2px solid black;
+  text-align: center;
+  z-index: 1;
+}
+#health-tips-pera {
+  padding: 10px 15px;
+  width: 100%;
+}
+#tipsheading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-style: oblique;
+  text-decoration: underline;
+}
+ 
+@media only screen and (max-width: 600px)
+{
+
+  .itams{
+    background-color:chocolate;
+  }
+}
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+#quates {
+  font-size: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.menubtn {
+  position: fixed;
+  top: 45%;
+  right: 3.5%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  opacity: 0.2;
+  z-index: 1;
+}
+.menubtn:hover {
+  opacity: 1;
+}
+.menubtnLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  padding: 2px 5px;
+  /* margin: 0px 2px; */
+  right: -2%;
+}
+
+.menubtnLink li{
+  transition: all .3s;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menubtn li:hover {
+  color: rgb(0, 153, 255);
+  scale: 1.5;
+}
+
+.menubtn li:hover .menubtn{
+  position: fixed;
+  right: 2%;
+}
+
+/* -------------------Service-section---------------- */
+
+#Service-sec{
+  /* margin-top: 50px;
+  clear:both; */
+  height: 100vh;
+  width: 100%;
+  background:linear-gradient(45deg,rgb(35, 35, 217),rgb(200, 25, 118));
+  
+}
+#Service-sec .service-box{
+  height: 100%;
+  width: 100%;
+  padding-top: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services{
+  display: flex;
+  flex-direction:row;
+  height: 95%;
+  width: 50%;
+  /* border:1px solid black; */
+  padding:1px 0px;
+  margin:10px;
+  border-radius:5px;
+  box-sizing: border-box;
+}
+ 
+
+  #Service-sec h2{
+    font-size: 5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    transform: rotate(90deg);
+    margin:10px;
+    border-radius: 0px 20px 0px 20px;
+  }
+  .services ul{
+  height: auto;
+  width: 100%;
+  padding:5px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0.646);
+  border-radius: 5px 1px 1px 5px;
+}
+
+.services li{
+  margin:5px;
+  padding:2px;
+  border: 1px solid ;
+  border-radius: 10px;
+  /* filter: blur(); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.services img{
+  margin:0px 5px;
+  padding:2px;
+  width:150px;
+  /* border:1px solid pink; */
+  border-radius: 50%;
+  /* backdrop-filter: blur(4px); */
+}
+.services li a{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.services li a label{
+  flex-basis: 40%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin:0px 25px;
+  padding-bottom: 5px;
+  border-right:5px solid brown;
+  border-top-right-radius: 10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: -2px 2px 4px brown;
+  box-shadow: 3px 4px 4px brown;
+
+}
+
+.exercise-sec{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 14%;
+  background-color: black;
+  z-index: 99;
+}
+
+.legBoxHeading{
+  width: 100%;
+  padding: 10px 0;
+  color: white;
+  text-align: center;
+
+}
+
+.ex-container{
+  margin: 10px;
+  height: 300px;
+  width: 300px;
+  border-radius: 5px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ex-container img{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.ex-container h1 {
+  font-weight: bold;
+}
+

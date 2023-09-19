@@ -1,0 +1,8 @@
+@media  (max-width:450px){
+    body{
+        width: 100%;
+        background: black;
+        color: white;
+    }
+    
+}
