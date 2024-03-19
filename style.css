@@ -260,9 +260,11 @@ body {
 }
 
 .services img {
-  width: 40%;
+  width: calc(117px);
   height: calc(117px);
   border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
   display: none;
 }
 .services li:hover img {
