@@ -1,617 +1,303 @@
 import exerciseAPI from "./ExerciseApi.js";
 
-const legBtn = document.getElementById("leg");
-const absBtn = document.getElementById("abs");
-const chestBtn = document.getElementById("chest");
-const shoulderBtn = document.getElementById("shoulder");
-const armsBtn = document.getElementById("arms");
-const backsBtn = document.getElementById("backs");
-const fullBodyBtn = document.getElementById("fullBody");
-
-const excerciseSec = document.getElementById("exercise-sec");
-
-// const legData = [
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "squats",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "Deadlift",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "jumping squats",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "deep squats",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "Barbell Squats",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "Barbell Lunges",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "Leg press",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-
-//   {
-//     heading: "Legs",
-//     img: "/images/demo.jpeg",
-//     exName: "Leg Extensions",
-//     des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-//   },
-// ];
-
-const absData = [
+const exerciseSec = document.getElementById("exercise-sec");
+const exerciseArr = [
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Crunches",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "leg",
+    dpUrl:
+      "https://media.istockphoto.com/id/1202786878/photo/trained-legs-with-muscular-calves-in-sneakers-in-training-gym-during-hard-fitness-and-gym.jpg?s=1024x1024&w=is&k=20&c=B5UhhTNFfa1Lwd0C5joJU1SurPW5Bhn3KYgEdnAcGSE=",
   },
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Reverse Crunches",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "abs",
+    dpUrl:
+      "https://cdn.pixabay.com/photo/2016/03/31/03/23/fitness-1291997_960_720.jpg",
   },
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Plank",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "chest",
+    dpUrl:
+      "https://cdn.pixabay.com/photo/2016/11/29/09/10/man-1868632_1280.jpg",
   },
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Leg Raise",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "shoulder",
+    dpUrl:
+      "https://media.istockphoto.com/id/510790690/photo/strong-athletic-man-back-on-grey-background.jpg?s=1024x1024&w=is&k=20&c=mGGUbcbAeFBam2e-iQAs3DAAUPkiGg5j3spJWKZuaOc=",
   },
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Hanging Leg Raise",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "arms",
+    dpUrl:
+      "https://cdn.pixabay.com/photo/2017/09/27/18/52/gym-2793007_1280.jpg",
   },
   {
-    heading: "Abs",
-    img: "/images/demo.jpeg",
-    exName: "Plate Twist",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
+    name: "back",
+    dpUrl:
+      "https://cdn.pixabay.com/photo/2017/06/30/21/02/muscle-2459720_1280.jpg",
+  },
+  {
+    name: "fullBody",
+    dpUrl: "https://cdn.pixabay.com/photo/2012/11/28/10/30/men-67636_1280.jpg",
   },
 ];
 
-const chestData = [
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Simple Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "wide hand Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Incline Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Decline Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Dumbble flyes",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Bench press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Incline Bench press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Chest",
-    img: "/images/demo.jpeg",
-    exName: "Decline Bench press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-];
+function setExBox(exUrl, exName, exDesc, exHeading) {
+  return ` <div class="ex-Box" data-exDesc = "${exDesc}" data-ExHeading="${exHeading}">
+    <img
+      src="${exUrl}"
+      alt="${exName}"
+      class="ex-img"
+    />
+    <span class="ex-name">${exName}</span>
+  </div>`;
+}
 
-const shoulderData = [
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Barbell shoulder press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Front Dumbbell Raise",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Side dumbbell Raise",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Hanuman Dand",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Hindu Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Back Barbell Press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Dumbbell Shoulder Press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Shoulder",
-    img: "/images/demo.jpeg",
-    exName: "Upright Barbell Row",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-];
-
-const backsData = [
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Hand Stand",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Wide-Grip Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Close-Grip Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Babell Deadlift",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "One Arm Dumbbell Row",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Bent Over Dumbbell Row",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Backs",
-    img: "/images/demo.jpeg",
-    exName: "Spate",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-];
-
-const armsData = [
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Spate",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Dumbbell Curl",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Barbell Curl",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Concentration Curls",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Dumbbell Tricep Extension",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Seated Triceps Press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Dumbbell Kickback",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Arms",
-    img: "/images/demo.jpeg",
-    exName: "Cable Pushdown",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-];
-
-const fullBodyData = [
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Spate",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Pull-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Push-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Abs Crunch",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Sit-ups",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Side Crunch",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Squates",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Sumo-Squates",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Forearm Curl",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-  {
-    heading: "Full Body",
-    img: "/images/demo.jpeg",
-    exName: "Dumbbell Shoulder Press",
-    des: "lorem loremjsjdfliasj fiosdj riofsjrlifj; srgfijr;dgn ;siergn;aierong",
-  },
-];
-
-//Function to add leg section
-const legSection = () => {
-  const legBoxHeading = document.createElement("div");
-  legBoxHeading.classList.add("legBoxHeading");
-
-  legBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${exerciseAPI[0].legData[0].heading}</h1>
-        <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>  
-    `;
-  excerciseSec.appendChild(legBoxHeading);
-
-  exerciseAPI[0].legData.forEach((item) => {
-    const legBox = document.createElement("div");
-    legBox.classList.add("ex-container");
-    legBox.innerHTML = `
-          <img src="${item.img}" alt="ex. image" class="ex-img" />
-          <h1 class="ex-name">${item.exName}</h1>  
-      `;
-    excerciseSec.appendChild(legBox);
-  });
-
-  //------------------------- function for exitLegBoxHead ----------------------------
-  let exPageExitBtn = document.getElementById("exitLegBoxHead");
-  exPageExitBtn.addEventListener("click", () => {
-    // console.log("click",exPageExitBtn);
-    excerciseSec.innerHTML = "";
-  });
-};
-// Adding event listener
-legBtn.addEventListener("click", legSection);
-
-// Function to add abs section
-const absSection = () => {
-  const absBoxHeading = document.createElement("div");
-  absBoxHeading.classList.add("absBoxHeading");
-  absBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${absData[0].heading}</h1>
-      <span class="exitLegBoxHead"   id="exitLegBoxHead">x</span>
-
-      
-  `;
-  excerciseSec.appendChild(absBoxHeading);
-
-  absData.forEach((item) => {
-    const absBox = document.createElement("div");
-    absBox.classList.add("ex-container");
-    absBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(absBox);
-
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
+function getExercises(exerciseName) {
+  let clutter = exerciseName + "Data";
+  for (let ExerciseSet of exerciseAPI) {
+    ExerciseSet.clutter.forEach((elm) => {
+      console.log(elm);
     });
-  });
-};
-// Adding event listener for abs
-absBtn.addEventListener("click", absSection);
+  }
+}
 
-// Function to add Chest section
-const chestSection = () => {
-  const chestBoxHeading = document.createElement("div");
-  chestBoxHeading.classList.add("chestBoxHeading");
-  chestBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${chestData[0].heading}</h1>
-      <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+// exerciseAPI.forEach((ExeciseSet)=>{
+//   console.log(ExeciseSet);
+// })
+function setExerciseLi(exercisename, dpUrl) {
+  return `<li id="${exercisename}" 
+  onclick="getExercises('${exercisename}')" >
+    <a href="#ex-container" id="${exercisename}op" class="serviceLink"><img src="${dpUrl}"
+    alt="img for ex." /><label for="${exercisename}op">
+    ${exercisename}
+    </label></a>
+    </li>`;
+}
 
-      
-  `;
-  excerciseSec.appendChild(chestBoxHeading);
+const serviceUl = document.querySelector(".services");
+exerciseArr.forEach((li) => {
+  serviceUl.innerHTML += setExerciseLi(li.name, li.dpUrl);
+});
 
-  chestData.forEach((item) => {
-    const chestBox = document.createElement("div");
-    chestBox.classList.add("ex-container");
-    chestBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(chestBox);
+// function selector(){
+let legBtn = document.getElementById("leg");
+let absBtn = document.getElementById("abs");
+let chestBtn = document.getElementById("chest");
+let shoulderBtn = document.getElementById("shoulder");
+let armsBtn = document.getElementById("arms");
+let backsBtn = document.getElementById("backs");
+let fullBodyBtn = document.getElementById("fullBody");
 
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
-    });
-  });
-};
-// Adding event listener for chestbtn
-chestBtn.addEventListener("click", chestSection);
+// // }
+// //Function to add leg section
+// const legSection = () => {
+//   const legBoxHeading = document.createElement("div");
+//   legBoxHeading.classList.add("legBoxHeading");
 
-// Function to add shoulder section
-const shoulderSection = () => {
-  const shoulderBoxHeading = document.createElement("div");
-  shoulderBoxHeading.classList.add("shoulderBoxHeading");
-  shoulderBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${shoulderData[0].heading}</h1>
-      <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+//   legBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${exerciseAPI[0].legData[0].heading}</h1>
+//         <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+//     `;
+//   exerciseSec.appendChild(legBoxHeading);
 
-      
-  `;
-  excerciseSec.appendChild(shoulderBoxHeading);
+//   exerciseAPI[0].legData.forEach((item) => {
+//     const legBox = document.createElement("div");
+//     legBox.classList.add("ex-container");
+//     legBox.innerHTML = `
+//           <img src="${item.img}" alt="ex. image" class="ex-img" />
+//           <h1 class="ex-name">${item.exName}</h1>
+//       `;
+//     exerciseSec.appendChild(legBox);
+//   });
 
-  shoulderData.forEach((item) => {
-    const shoulderBox = document.createElement("div");
-    shoulderBox.classList.add("ex-container");
-    shoulderBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(shoulderBox);
+//   //------------------------- function for exitLegBoxHead ----------------------------
+//   let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//   exPageExitBtn.addEventListener("click", () => {
+//     // console.log("click",exPageExitBtn);
+//     exerciseSec.innerHTML = "";
+//   });
+// };
+// // Adding event listener
+// legBtn.addEventListener("click", legSection);
 
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
-    });
-  });
-};
-// Adding event listener for shoulderbtn
-shoulderBtn.addEventListener("click", shoulderSection);
+// // Function to add abs section
+// const absSection = () => {
+//   const absBoxHeading = document.createElement("div");
+//   absBoxHeading.classList.add("absBoxHeading");
+//   absBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${absData[0].heading}</h1>
+//       <span class="exitLegBoxHead"   id="exitLegBoxHead">x</span>
 
-// Function to add arms section
-const armsSection = () => {
-  const armsBoxHeading = document.createElement("div");
-  armsBoxHeading.classList.add("armsBoxHeading");
-  armsBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${armsData[0].heading}</h1>
-      <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+//   `;
+//   exerciseSec.appendChild(absBoxHeading);
 
-      
-  `;
-  excerciseSec.appendChild(armsBoxHeading);
+//   absData.forEach((item) => {
+//     const absBox = document.createElement("div");
+//     absBox.classList.add("ex-container");
+//     absBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(absBox);
 
-  armsData.forEach((item) => {
-    const armsBox = document.createElement("div");
-    armsBox.classList.add("ex-container");
-    armsBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(armsBox);
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for abs
+// absBtn.addEventListener("click", absSection);
 
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
-    });
-  });
-};
-// Adding event listener for armsbtn
-armsBtn.addEventListener("click", armsSection);
+// // Function to add Chest section
+// const chestSection = () => {
+//   const chestBoxHeading = document.createElement("div");
+//   chestBoxHeading.classList.add("chestBoxHeading");
+//   chestBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${chestData[0].heading}</h1>
+//       <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
 
-// Function to add backs section
-const backsSection = () => {
-  const backsBoxHeading = document.createElement("div");
-  backsBoxHeading.classList.add("backsBoxHeading");
-  backsBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${backsData[0].heading}</h1>
-      <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+//   `;
+//   exerciseSec.appendChild(chestBoxHeading);
 
-      
-  `;
-  excerciseSec.appendChild(backsBoxHeading);
+//   chestData.forEach((item) => {
+//     const chestBox = document.createElement("div");
+//     chestBox.classList.add("ex-container");
+//     chestBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(chestBox);
 
-  backsData.forEach((item) => {
-    const backsBox = document.createElement("div");
-    backsBox.classList.add("ex-container");
-    backsBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(backsBox);
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
-    });
-  });
-};
-// Adding event listener for backsbtn
-backsBtn.addEventListener("click", backsSection);
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for chestbtn
+// chestBtn.addEventListener("click", chestSection);
 
-// Function to add fullBody section
-const fullBodySection = () => {
-  const fullBodyBoxHeading = document.createElement("div");
-  fullBodyBoxHeading.classList.add("fullBodyBoxHeading");
-  fullBodyBoxHeading.innerHTML = `
-      <h1 class="ex-heading">${fullBodyData[0].heading}</h1>
-      <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+// // Function to add shoulder section
+// const shoulderSection = () => {
+//   const shoulderBoxHeading = document.createElement("div");
+//   shoulderBoxHeading.classList.add("shoulderBoxHeading");
+//   shoulderBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${shoulderData[0].heading}</h1>
+//       <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
 
-      
-  `;
-  excerciseSec.appendChild(fullBodyBoxHeading);
+//   `;
+//   exerciseSec.appendChild(shoulderBoxHeading);
 
-  fullBodyData.forEach((item) => {
-    const fullBodyBox = document.createElement("div");
-    fullBodyBox.classList.add("ex-container");
-    fullBodyBox.innerHTML = `
-        <img src="${item.img}" alt="ex. image" class="ex-img" />
-        <h1 class="ex-name">${item.exName}</h1>  
-    `;
-    excerciseSec.appendChild(fullBodyBox);
+//   shoulderData.forEach((item) => {
+//     const shoulderBox = document.createElement("div");
+//     shoulderBox.classList.add("ex-container");
+//     shoulderBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(shoulderBox);
 
-    //------------------------- function for exitLegBoxHead ----------------------------
-    let exPageExitBtn = document.getElementById("exitLegBoxHead");
-    exPageExitBtn.addEventListener("click", () => {
-      // console.log("click",exPageExitBtn);
-      excerciseSec.innerHTML = "";
-    });
-  });
-};
-// Adding event listener for fullBodybtn
-fullBodyBtn.addEventListener("click", fullBodySection);
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for shoulderbtn
+// shoulderBtn.addEventListener("click", shoulderSection);
+
+// // Function to add arms section
+// const armsSection = () => {
+//   const armsBoxHeading = document.createElement("div");
+//   armsBoxHeading.classList.add("armsBoxHeading");
+//   armsBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${armsData[0].heading}</h1>
+//       <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+
+//   `;
+//   exerciseSec.appendChild(armsBoxHeading);
+
+//   armsData.forEach((item) => {
+//     const armsBox = document.createElement("div");
+//     armsBox.classList.add("ex-container");
+//     armsBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(armsBox);
+
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for armsbtn
+// armsBtn.addEventListener("click", armsSection);
+
+// // Function to add backs section
+// const backsSection = () => {
+//   const backsBoxHeading = document.createElement("div");
+//   backsBoxHeading.classList.add("backsBoxHeading");
+//   backsBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${backsData[0].heading}</h1>
+//       <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+
+//   `;
+//   exerciseSec.appendChild(backsBoxHeading);
+
+//   backsData.forEach((item) => {
+//     const backsBox = document.createElement("div");
+//     backsBox.classList.add("ex-container");
+//     backsBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(backsBox);
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for backsbtn
+// backsBtn.addEventListener("click", backsSection);
+
+// // Function to add fullBody section
+// const fullBodySection = () => {
+//   const fullBodyBoxHeading = document.createElement("div");
+//   fullBodyBoxHeading.classList.add("fullBodyBoxHeading");
+//   fullBodyBoxHeading.innerHTML = `
+//       <h1 class="ex-heading">${fullBodyData[0].heading}</h1>
+//       <span class="exitLegBoxHead"  id="exitLegBoxHead">x</span>
+
+//   `;
+//   exerciseSec.appendChild(fullBodyBoxHeading);
+
+//   fullBodyData.forEach((item) => {
+//     const fullBodyBox = document.createElement("div");
+//     fullBodyBox.classList.add("ex-container");
+//     fullBodyBox.innerHTML = `
+//         <img src="${item.img}" alt="ex. image" class="ex-img" />
+//         <h1 class="ex-name">${item.exName}</h1>
+//     `;
+//     exerciseSec.appendChild(fullBodyBox);
+
+//     //------------------------- function for exitLegBoxHead ----------------------------
+//     let exPageExitBtn = document.getElementById("exitLegBoxHead");
+//     exPageExitBtn.addEventListener("click", () => {
+//       // console.log("click",exPageExitBtn);
+//       exerciseSec.innerHTML = "";
+//     });
+//   });
+// };
+// // Adding event listener for fullBodybtn
+// fullBodyBtn.addEventListener("click", fullBodySection);
